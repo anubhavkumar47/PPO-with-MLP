@@ -3,9 +3,9 @@ import math
 
 import numpy as np
 import torch
-from project_files.enviroment import  Environment
-from project_files.buffer import ReplayBuffer
-from project_files.ppo import PPO
+from enviroment import  Environment
+from buffer import ReplayBuffer
+from ppo import PPO
 
 
 
