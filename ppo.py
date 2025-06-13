@@ -3,15 +3,15 @@ import torch
 import torch.nn as nn
 from torch.distributions import MultivariateNormal
 from network import ActorNetwork, CriticNetwork
-from ActorNetwork import TransformerActor
+
 
 
 class PPO:
     def __init__(self, state_dim, action_dim, lr=3e-4, gamma=0.99, gae_lambda=0.95,
                  policy_clip=0.2, update_epochs=10,batch_size =128):
-        self.actor = TransformerActor(state_dim, action_dim)
+        self.actor = ActorNetwork(state_dim, action_dim)
         self.critic = CriticNetwork(state_dim)
-        self.actor_old = TransformerActor(state_dim, action_dim)
+        self.actor_old = ActorNetwork(state_dim, action_dim)
         self.actor_old.load_state_dict(self.actor.state_dict())
 
         self.actor_optimizer = torch.optim.Adam(self.actor.parameters(), lr=lr)
